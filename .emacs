@@ -182,7 +182,11 @@
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
 ;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
-
+;;切换到目录窗口 Ctrl-c . g d 
+;;切换到函数/方法窗口 Ctrl-c . g m 
+;;切换到文件窗口 Ctrl-c . g s 
+;;切换到历史窗口 Ctrl-c . g h 
+;;切换到上一个编辑窗口 Ctrl-c . g l
 (require 'semantic/analyze)
 (provide 'semantic-analyze)
 (provide 'semantic-ctxt)
