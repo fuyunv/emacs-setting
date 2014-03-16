@@ -3,9 +3,12 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 
-;;yasnippet
+;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
-(yas-global-mode 1)
+(setq yas/prompt-functions 
+   '(yas/dropdown-prompt yas/x-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
+(yas/global-mode 1)
+(yas/minor-mode-on) ; 以minor mode打开，这样才能配合主mode使用
 
 ;;auto-complete
 (require 'auto-complete-config)
