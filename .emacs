@@ -141,9 +141,11 @@
  '(custom-enabled-themes (quote (deeper-blue)))
  '(delete-selection-mode nil)
  '(display-time-mode t)
+ '(ecb-options-version "2.32")
  '(mark-even-if-inactive t)
  '(scroll-bar-mode (quote right))
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(transient-mark-mode 1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -176,3 +178,18 @@
 
 ;;emacs23 内置
 (require 'cedet)
+
+;;ecb
+(add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
+;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
+
+(require 'semantic/analyze)
+(provide 'semantic-analyze)
+(provide 'semantic-ctxt)
+(provide 'semanticdb)
+(provide 'semanticdb-find)
+(provide 'semanticdb-mode)
+(provide 'semantic-load)
+
+(require 'ecb)
+(setq stack-trace-on-error t)
