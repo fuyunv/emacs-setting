@@ -1,10 +1,10 @@
 ;;To add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
 
 ;;auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
-
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-liap/ac-dict")
 (setq ac-use-quick-help nil)
 (setq ac-auto-start 2) ;; 输入2个字符才开始补全
