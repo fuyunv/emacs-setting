@@ -1,6 +1,11 @@
 ;;To add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+
+;;yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;;auto-complete
 (require 'auto-complete-config)
