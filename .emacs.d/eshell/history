@@ -1,0 +1,11 @@
+cd ../../..
+cd ..
+find ./ -name log.h
+ls
+cd /
+cd /
+pwd
+cd ~/myspace/src/l
+cd ~/myspace/src/linux/
+ls
+find ./ -name kobject.h
