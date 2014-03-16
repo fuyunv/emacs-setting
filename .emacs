@@ -31,6 +31,7 @@
 (add-hook 'c-mode-common-hook
 	  '(lambda ()
 	     (require 'xcscope)))
+		 
 ;;cscope 全局快捷键
 (define-key global-map [(control f3)]  'cscope-set-initial-directory)
 (define-key global-map [(control f4)]  'cscope-unset-initial-directory)
@@ -151,6 +152,7 @@
  )
 
 ;;代码块收缩功能
+(setq hs-minor-mode t)
 (load-library "hideshow")
 (add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'c++-mode-hook 'hs-minor-mode)
@@ -165,3 +167,12 @@
 ;; C-c @ C-s show block
 ;; C-c @ C-h hide block
 ;; C-c @ C-c toggle hide/show
+
+;;hot key
+(global-set-key (kbd "<f1>") 'shell)
+(global-set-key (kbd "<f5>") 'semantic-ia-fast-jump) ; 智能跳转 跳转到定义
+(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏块
+(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示块
+
+;;emacs23 内置
+(require 'cedet)
