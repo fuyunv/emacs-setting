@@ -141,6 +141,7 @@
  '(custom-enabled-themes (quote (deeper-blue)))
  '(delete-selection-mode nil)
  '(display-time-mode t)
+ '(ecb-layout-window-sizes nil)
  '(ecb-options-version "2.32")
  '(mark-even-if-inactive t)
  '(scroll-bar-mode (quote right))
@@ -200,3 +201,9 @@
 ;;auto start ecb
 (setq ecb-auto-activate t
 	  ecb-tip-of-the-day nil)
+
+;;各窗口间切换
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
