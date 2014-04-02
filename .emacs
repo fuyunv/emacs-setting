@@ -210,3 +210,7 @@
 
 ;;semantic-mode start
 (semantic-mode)
+
+;;windows os spec
+(if (eq system-type `windows-nt)
+	(run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488))
