@@ -119,18 +119,18 @@
 (add-hook 'c-mode-hook
           '(lambda ()
              (c-set-style "K&R")
-             (setq tab-width 8)
+             (setq tab-width 4)
              (setq indent-tabs-mode t)
-             (setq c-basic-offset 8)))
+             (setq c-basic-offset 4)))
 
 ;; C++ language setting
 (add-hook 'c++-mode-hook
           '(lambda ()
              (c-set-style "K&R")
              ;;(c-toggle-auto-state)
-             (setq tab-width 8)
+             (setq tab-width 4)
              (setq indent-tabs-mode t)
-             (setq c-basic-offset 8)))
+             (setq c-basic-offset 4)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
