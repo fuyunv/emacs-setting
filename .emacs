@@ -138,15 +138,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (deeper-blue)))
  '(delete-selection-mode nil)
  '(display-time-mode t)
  '(ecb-layout-window-sizes nil)
  '(ecb-options-version "2.32")
  '(mark-even-if-inactive t)
  '(scroll-bar-mode (quote right))
- '(show-paren-mode t)
- '(transient-mark-mode 1))
+ '(show-paren-mode t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -214,4 +213,13 @@
 
 ;;windows os spec
 (if (eq system-type `windows-nt)
-	(run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488))
+	(let ()
+	  (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
+	  (custom-set-variables
+	   '(custom-enabled-themes (quote (dichromacy)))
+	   '(ecb-source-path (quote (("c:" "c:"))))
+	   '(ecb-wget-setup (quote cons))
+	   '(inhibit-startup-screen t)
+	   '(tool-bar-mode nil))))
+
+
