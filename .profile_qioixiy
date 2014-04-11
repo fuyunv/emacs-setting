@@ -1,0 +1,11 @@
+#!private profile
+
+# grep in .git dir
+function ggrep()
+{
+    if [ -d "./.git" ] ; then
+        find . -name .repo -prune -o -name .git -prune -o  -type f -name "*\.*" -print0 | xargs -0 grep --color -n "$@"
+    else
+        echo "not a git dir."
+    fi
+}
