@@ -2,6 +2,10 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/go")
+
+;;go mode
+(require 'go-mode-load)
 
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
