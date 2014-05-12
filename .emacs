@@ -2,7 +2,7 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
-(add-to-list 'load-path "~/.emacs.d/go")
+(add-to-list 'load-path "~/.emacs.d/go-mode")
 
 ;;go mode
 (require 'go-mode-load)
