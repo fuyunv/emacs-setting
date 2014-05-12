@@ -227,3 +227,22 @@
 	   '(tool-bar-mode nil))))
 
 
+
+;; UTF-8
+(if 0
+	(lambda()
+	  (setq current-language-environment "UTF-8")
+	  (setq default-input-method "chinese-py")
+	  (setq locale-coding-system 'utf-8)
+	  (set-terminal-coding-system 'utf-8)
+	  (set-keyboard-coding-system 'utf-8)
+	  (set-selection-coding-system 'utf-8)
+	  (prefer-coding-system 'utf-8)
+	  ;; get around the Ctrl+SPACE key binding for inputing method
+	  (global-set-key "\C-cm" 'set-mark-command)
+	  ;; highlight marked region
+	  (transient-mark-mode t)
+	  ;; enable syntax highlight
+	  (global-font-lock-mode t)
+	  ;; show column number on status bar
+	  (setq column-number-mode t)))
