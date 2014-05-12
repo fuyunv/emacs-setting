@@ -3,9 +3,13 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/go-mode")
+(add-to-list 'load-path "~/.emacs.d/php-mode")
 
 ;;go mode
 (require 'go-mode-load)
+
+;;php mode
+(require 'php-mode)
 
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
