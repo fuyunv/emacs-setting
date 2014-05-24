@@ -216,6 +216,8 @@
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
+;;revert current buffer
+(global-set-key [(control c) r] 'revert-buffer)
 ;;semantic-mode start
 (semantic-mode)
 
