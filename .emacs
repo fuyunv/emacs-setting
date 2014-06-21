@@ -14,7 +14,7 @@
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
 (setq yas/prompt-functions 
-   '(yas/dropdown-prompt yas/x-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
+      '(yas/dropdown-prompt yas/x-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
 (yas/global-mode 1)
 (yas/minor-mode-on) ; 以minor mode打开，这样才能配合主mode使用
 
@@ -37,9 +37,9 @@
 ;;(require 'xcscope)
 ;;c mode 才加载xcscope
 (add-hook 'c-mode-common-hook
-	  '(lambda ()
-	     (require 'xcscope)))
-		 
+		  '(lambda ()
+			 (require 'xcscope)))
+
 ;;cscope 全局快捷键
 (define-key global-map [(control f3)]  'cscope-set-initial-directory)
 (define-key global-map [(control f4)]  'cscope-unset-initial-directory)
@@ -68,20 +68,20 @@
 
 ;;输入左边的括号，就会自动补全右边的部分.包括(), "", [] , {} , 等等。 
 (defun my-common-mode-auto-pair () 
-(interactive) 
-(make-local-variable 'skeleton-pair-alist) 
-(setq skeleton-pair-alist '( 
-							(? ? _ "''") 
-							(? ? _ """") 
-							(? ? _ "()") 
-							(? ? _ "[]") 
-							(?{ _ ?} >))) 
-(setq skeleton-pair t) 
-(local-set-key (kbd "(") 'skeleton-pair-insert-maybe) 
-(local-set-key (kbd "\"") 'skeleton-pair-insert-maybe) 
-(local-set-key (kbd "{") 'skeleton-pair-insert-maybe) 
-(local-set-key (kbd "\'") 'skeleton-pair-insert-maybe) 
-(local-set-key (kbd "[") 'skeleton-pair-insert-maybe)) 
+  (interactive) 
+  (make-local-variable 'skeleton-pair-alist) 
+  (setq skeleton-pair-alist '(
+							  (? ? _ "''") 
+							  (? ? _ """") 
+							  (? ? _ "()") 
+							  (? ? _ "[]") 
+							  (?{ _ ?} >))) 
+  (setq skeleton-pair t) 
+  (local-set-key (kbd "(") 'skeleton-pair-insert-maybe) 
+  (local-set-key (kbd "\"") 'skeleton-pair-insert-maybe) 
+  (local-set-key (kbd "{") 'skeleton-pair-insert-maybe) 
+  (local-set-key (kbd "\'") 'skeleton-pair-insert-maybe) 
+  (local-set-key (kbd "[") 'skeleton-pair-insert-maybe)) 
 (add-hook 'c-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'c++-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'java-mode-hook 'my-common-mode-auto-pair) 
@@ -189,7 +189,7 @@
 
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
-;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
+										;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
 ;;切换到目录窗口 Ctrl-c . g d 
 ;;切换到函数/方法窗口 Ctrl-c . g m 
 ;;切换到文件窗口 Ctrl-c . g s 
@@ -223,32 +223,41 @@
 
 ;;windows os spec
 (if (eq system-type `windows-nt)
-	(let ()
-	  (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
-	  (custom-set-variables
-	   '(custom-enabled-themes (quote (dichromacy)))
-	   '(ecb-source-path (quote (("c:" "c:"))))
-	   '(ecb-wget-setup (quote cons))
-	   '(inhibit-startup-screen t)
-	   '(tool-bar-mode nil))))
+    (let ()
+      (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
+      (custom-set-variables
+       '(custom-enabled-themes (quote (dichromacy)))
+       '(ecb-source-path (quote (("c:" "c:"))))
+       '(ecb-wget-setup (quote cons))
+       '(inhibit-startup-screen t)
+       '(tool-bar-mode nil))))
 
-
+;;only for linux
+(if (eq system-type `gnu/linux)
+	`(lambda()
+	   (setq load-path
+			 (cons (expand-file-name "~/.emacs.d/site-lisp/llvm") load-path))
+	   (require 'llvm-mode)
+	   (setq load-path
+			 (cons (expand-file-name "~/.emacs.d/site-lisp/llvm") load-path))
+	   (require 'tablegen-mode)))
 
 ;; UTF-8
 (if 0
-	(lambda()
-	  (setq current-language-environment "UTF-8")
-	  (setq default-input-method "chinese-py")
-	  (setq locale-coding-system 'utf-8)
-	  (set-terminal-coding-system 'utf-8)
-	  (set-keyboard-coding-system 'utf-8)
-	  (set-selection-coding-system 'utf-8)
-	  (prefer-coding-system 'utf-8)
-	  ;; get around the Ctrl+SPACE key binding for inputing method
-	  (global-set-key "\C-cm" 'set-mark-command)
-	  ;; highlight marked region
-	  (transient-mark-mode t)
-	  ;; enable syntax highlight
-	  (global-font-lock-mode t)
-	  ;; show column number on status bar
-	  (setq column-number-mode t)))
+    (lambda()
+      (setq current-language-environment "UTF-8")
+      (setq default-input-method "chinese-py")
+      (setq locale-coding-system 'utf-8)
+      (set-terminal-coding-system 'utf-8)
+      (set-keyboard-coding-system 'utf-8)
+      (set-selection-coding-system 'utf-8)
+      (prefer-coding-system 'utf-8)
+      ;; get around the Ctrl+SPACE key binding for inputing method
+      (global-set-key "\C-cm" 'set-mark-command)
+      ;; highlight marked region
+      (transient-mark-mode t)
+      ;; enable syntax highlight
+      (global-font-lock-mode t)
+      ;; show column number on status bar
+      (setq column-number-mode t)))
+
