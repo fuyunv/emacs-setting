@@ -187,9 +187,52 @@
 ;;emacs23 内置
 (require 'cedet)
 
+;;配置cedet
+;;(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+(add-to-list 'load-path "~/.emacs.d/cedet-1.1/common")
+(add-to-list 'load-path "~/.emacs.d/cedet-1.1/contrib")
+;;(require 'semantic-ia nil 'noerror)
+;;(require 'semantic-tag-folding nil 'noerror)
+(require 'semantic-c nil 'noerror)
+(global-ede-mode t)                      ; enable the project management system
+;;(global-srecode-minor-mode t)            ; Enable template insertion menu
+;;(global-semantic-tag-folding-mode t)
+
+(global-set-key (kbd "M-q") 'semantic-ia-complete-symbol-menu)
+(global-set-key [f10] 'semantic-ia-fast-jump); 智能跳转 跳转到定义
+(global-set-key [S-f10]                  ; 跳转到上一次的地方
+				(lambda ()
+				  (interactive)
+                  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+                      (error "Semantic Bookmark ring is currently empty"))
+                  (let* ((ring (oref semantic-mru-bookmark-ring ring))
+                         (alist (semantic-mrub-ring-to-assoc-list ring))
+                         (first (cdr (car alist))))
+                    (if (semantic-equivalent-tag-p (oref first tag)
+                                                   (semantic-current-tag))
+                        (setq first (cdr (car (cdr alist)))))
+                    (semantic-mrub-switch-tags first))))
+(define-key c-mode-map [M-S-f12] 'semantic-analyze-proto-impl-toggle)
+;(define-key semantic-tag-folding-mode-map (kbd "C-c , -") 'semantic-tag-folding-fold-block)
+;(define-key semantic-tag-folding-mode-map (kbd "C-c , +") 'semantic-tag-folding-show-block)
+;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-all)
+;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-all)
+(setq semanticdb-project-roots (list (expand-file-name "/")))
+(defconst cedet-user-include-dirs
+  (list
+   "/usr/include"
+   "/usr/local/include"
+   ""))
+;(let ((include-dirs cedet-user-include-dirs))
+;  (mapc (lambda (dir)
+;          (semantic-add-system-include dir 'c++-mode)
+;          (semantic-add-system-include dir 'c-mode))
+;        include-dirs))
+
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
-										;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
+
+;;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
 ;;切换到目录窗口 Ctrl-c . g d 
 ;;切换到函数/方法窗口 Ctrl-c . g m 
 ;;切换到文件窗口 Ctrl-c . g s 
