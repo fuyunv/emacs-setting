@@ -206,9 +206,9 @@
 (require 'ecb)
 (setq stack-trace-on-error t)
 ;;auto start ecb
-;;(setq ecb-auto-activate t
-;;	  ecb-tip-of-the-day nil)
-;;(setq ecb-windows-width 0.22)
+(setq ecb-auto-activate t
+	  ecb-tip-of-the-day nil)
+(setq ecb-windows-width 0.22)
 
 ;;各窗口间切换
 (global-set-key [M-left] 'windmove-left)
