@@ -304,3 +304,19 @@
       ;; show column number on status bar
       (setq column-number-mode t)))
 
+;;etags generate-tag-table
+(defun generate-tag-table()
+  "Generate tag tables under current directory(Linux)."
+  (interactive)
+  (let   
+      ((exp "")
+       (dir ""))
+    (setq dir (read-from-minibuffer "generate tags in:" default-directory)
+          exp (read-from-minibuffer "suffix:" "*.[ch]"))
+	(setq command_local (concat "rm -f TAGS && find " dir " -name " "\"" exp "\"" "| xargs etags -a"))
+	(message command_local)
+	(with-temp-buffer
+	  (shell-command
+	   command_local
+	   (buffer-name)))))
+	   
