@@ -313,7 +313,7 @@
        (dir ""))
     (setq dir (read-from-minibuffer "generate tags in:" default-directory)
           exp (read-from-minibuffer "suffix:" "*.[ch]"))
-	(setq command_local (concat "rm -f TAGS && find " dir " -name " "\"" exp "\"" "| xargs etags -a"))
+	(setq command_local (concat "rm -f TAGS && find " dir " -name " "\"" exp "\"" " | tee ~/.temp | xargs -n 1 etags -a | tail -f ~/.temp -n 1"))
 	(message command_local)
 	(with-temp-buffer
 	  (shell-command
