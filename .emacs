@@ -101,10 +101,6 @@
 ;; 以 y/n代表 yes/no
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; 显示括号匹配 
-(show-paren-mode t)
-(setq show-paren-style 'parentheses)
-
 ;; 显示时间，格式如下
 (display-time-mode 1) 
 (setq display-time-24hr-format t) 
@@ -152,7 +148,9 @@
  '(ecb-options-version "2.32")
  '(mark-even-if-inactive t)
  '(scroll-bar-mode (quote right))
- '(show-paren-mode t))
+ '(show-paren-mode t);; 显示括号匹配
+ '(setq show-paren-style 'parentheses);;括号匹配的类型
+ )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -184,16 +182,18 @@
 (global-set-key (kbd "<f6>") 'find-tag)
 (global-set-key (kbd "<f7>") 'pop-tag-mark)
 
-(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏块
-(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示块
+(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏代码块
+(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
 
-;;emacs23 内置
+;;emacs23开始内置cedet
 (require 'cedet)
 
 ;;配置cedet
 ;;(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1/common")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1/contrib")
+
+;;semantic
 ;;(require 'semantic-ia nil 'noerror)
 ;;(require 'semantic-tag-folding nil 'noerror)
 (require 'semantic-c nil 'noerror)
@@ -202,8 +202,8 @@
 ;;(global-semantic-tag-folding-mode t)
 
 (global-set-key (kbd "M-q") 'semantic-ia-complete-symbol-menu)
-(global-set-key [f10] 'semantic-ia-fast-jump); 智能跳转 跳转到定义
-(global-set-key [S-f10]                  ; 跳转到上一次的地方
+(global-set-key [f10] 'semantic-ia-fast-jump);; 智能跳转 跳转到定义
+(global-set-key [S-f10] ;; 跳转到上一次的地方
 				(lambda ()
 				  (interactive)
                   (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
