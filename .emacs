@@ -178,6 +178,7 @@
 
 ;;hot key
 (global-set-key (kbd "<f1>") 'shell)
+(global-set-key (kbd "<f2>") 'ecb-minor-mode)
 (global-set-key (kbd "<f5>") 'semantic-ia-fast-jump) ; 智能跳转 跳转到定义
 (global-set-key (kbd "<f6>") 'find-tag)
 (global-set-key (kbd "<f7>") 'pop-tag-mark)
