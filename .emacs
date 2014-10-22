@@ -187,9 +187,8 @@
 (global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
 
 ;;emacs23开始内置cedet
-(require 'cedet)
-
 ;;配置cedet
+(require 'cedet)
 ;;(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1/common")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1/contrib")
@@ -257,12 +256,17 @@
 (setq ecb-tip-of-the-day nil)
 (setq ecb-windows-width 0.15)
 
-;;各窗口间切换
+;; 各窗口间切换
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
+;; 隐藏和显示ecb窗口
+(define-key global-map [(control f1)] 'ecb-hide-ecb-windows)
+(define-key global-map [(control f2)] 'ecb-show-ecb-windows)
+
+;;others
 ;;revert current buffer
 (global-set-key [(control c) r] 'revert-buffer)
 ;;semantic-mode start
