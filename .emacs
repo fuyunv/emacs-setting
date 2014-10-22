@@ -13,8 +13,12 @@
 
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
-(setq yas/prompt-functions 
-      '(yas/dropdown-prompt yas/x-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
+(setq yas/prompt-functions
+      '(yas/dropdown-prompt
+		yas/x-prompt
+		yas/completing-prompt
+		yas/ido-prompt
+		yas/no-prompt))
 (yas/global-mode 1)
 (yas/minor-mode-on) ; 以minor mode打开，这样才能配合主mode使用
 
@@ -23,18 +27,14 @@
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-liap/ac-dict")
 (setq ac-use-quick-help nil)
-(setq ac-auto-start 2) ;; 输入2个字符才开始补全
-(global-set-key "\M-/" 'auto-complete)  ;; 补全的快捷键，用于需要提前补全
-;; Show menu 0.1 second later
-(setq ac-auto-show-menu 0.1)
-;; 选择菜单项的快捷键
-(setq ac-use-menu-map t)
+(setq ac-auto-start 1) ;; 输入1个字符开始补全
+(setq ac-auto-show-menu 0.1);; Show menu 0.1 second later
+(setq ac-menu-height 12);; menu设置为12 lines
+(setq ac-use-menu-map t);; 选择菜单项的快捷键
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
-;; menu设置为12 lines
-(setq ac-menu-height 12)
+(global-set-key "\M-/" 'auto-complete);; 强制补全开始
 
-;;(require 'xcscope)
 ;;c mode 才加载xcscope
 (add-hook 'c-mode-common-hook
 		  '(lambda ()
@@ -63,10 +63,10 @@
 (global-set-key [(control c)(k)] 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-;;在左边显示行号 
+;;行号显示
 (global-linum-mode 'linum-mode)
 
-;;输入左边的括号，就会自动补全右边的部分.包括(), "", [] , {} , 等等。 
+;;输入左边的括号，就会自动补全右边的部分.包括(), "", [] , {} , ...
 (defun my-common-mode-auto-pair () 
   (interactive) 
   (make-local-variable 'skeleton-pair-alist) 
@@ -95,8 +95,8 @@
 (add-hook 'emacs-lisp-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'text-mode-hook 'my-common-mode-auto-pair) 
 
-(setq x-select-enable-clipboard t);支持emacs和外部程序的粘贴 
-(setq frame-title-format '("@ " buffer-file-name " " ));在标题栏显示buffer名称
+(setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
+(setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
 
 ;; 以 y/n代表 yes/no
 (fset 'yes-or-no-p 'y-or-n-p)
