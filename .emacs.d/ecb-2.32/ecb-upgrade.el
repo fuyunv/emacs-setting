@@ -874,7 +874,8 @@ Note: This function upgrades only the renamed but not the incompatible options
 
 
 (defun ecb-not-compatible-or-renamed-options-detected ()
-  (or ecb-not-compatible-options ecb-renamed-options))
+  ;;(or ecb-not-compatible-options ecb-renamed-options)
+  )
 
 (defun ecb-upgrade-make-copy-of-custom-file ()
   "Make a backup of the file returned by `ecb-custom-file' in the same directory."
