@@ -253,8 +253,8 @@
 (require 'ecb)
 (setq stack-trace-on-error t)
 ;;auto start ecb
-(setq ecb-auto-activate t
-	  ecb-tip-of-the-day nil)
+;;(setq ecb-auto-activate t)
+(setq ecb-tip-of-the-day nil)
 (setq ecb-windows-width 0.15)
 
 ;;各窗口间切换
