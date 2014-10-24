@@ -11,6 +11,20 @@
 ;;php mode
 (require 'php-mode)
 
+;;highlight
+(load-file "~/.emacs.d/highlight.el")
+(load-file "~/.emacs.d/idle-highlight-mode.el")
+(idle-highlight-mode)
+(defun my-coding-hook ()
+  (make-local-variable 'column-number-mode)
+  (column-number-mode t)
+  (if window-system (hl-line-mode t))
+  (idle-highlight-mode t))
+
+(add-hook 'emacs-lisp-mode-hook 'my-coding-hook)
+(add-hook 'c-mode-hook 'my-coding-hook)
+(add-hook 'python-mode-hook 'my-coding-hook)
+
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
 (require 'yasnippet)
 (setq yas/prompt-functions
