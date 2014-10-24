@@ -621,3 +621,13 @@ A：
 数值自己修改吧。
 
 来源：http://www.chinaunix.net/jh/23/702156.html
+
+
+调整窗口高度，宽度，适合高度，均分高度
+C-x ^
+shrink-window
+C-x { 
+C-x }
+C-x -
+C-x +
+
