@@ -329,4 +329,6 @@
 	   command_local
 	   (buffer-name)))
 	(message "tags generated!")))
-	   
+
+;; 启动emacsclient服务，不会打开新的emacs
+(server-start)
