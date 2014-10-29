@@ -70,7 +70,7 @@
 
 ;;buffer menu
 (require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer-and-update)
 
 ;;browse-kill-ring
 (require 'browse-kill-ring)
@@ -191,7 +191,7 @@
 ;; C-c @ C-c toggle hide/show
 
 ;;hot key
-(global-set-key (kbd "<f1>") 'shell)
+(global-set-key (kbd "<f1>") 'eshell) ; shell->本地shell, eshell->emacs shell
 (global-set-key (kbd "<f2>") 'ecb-minor-mode)
 (global-set-key (kbd "<f5>") 'semantic-ia-fast-jump) ; 智能跳转 跳转到定义
 (global-set-key (kbd "<f6>") 'find-tag)
