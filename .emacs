@@ -1,14 +1,12 @@
 ;;To add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(add-to-list 'load-path "~/.emacs.d/go-mode")
-(add-to-list 'load-path "~/.emacs.d/php-mode")
 
 ;;go mode
+(add-to-list 'load-path "~/.emacs.d/go-mode")
 (require 'go-mode-load)
 
 ;;php mode
+(add-to-list 'load-path "~/.emacs.d/php-mode")
 (require 'php-mode)
 
 ;;highlight
@@ -26,6 +24,7 @@
 (add-hook 'python-mode-hook 'my-coding-hook)
 
 ;;yasnippet,必须在auto-complete之前，因为它会用到yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
 (setq yas/prompt-functions
       '(yas/dropdown-prompt
@@ -37,6 +36,7 @@
 (yas/minor-mode-on) ; 以minor mode打开，这样才能配合主mode使用
 
 ;;auto-complete
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-liap/ac-dict")
@@ -77,9 +77,6 @@
 (global-set-key [(control c)(k)] 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-;;行号显示
-(global-linum-mode 'linum-mode)
-
 ;;输入左边的括号，就会自动补全右边的部分.包括(), "", [] , {} , ...
 (defun my-common-mode-auto-pair () 
   (interactive) 
@@ -108,30 +105,6 @@
 (add-hook 'sql-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'emacs-lisp-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'text-mode-hook 'my-common-mode-auto-pair) 
-
-(setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
-(setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
-
-;; 以 y/n代表 yes/no
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; 显示时间，格式如下
-(display-time-mode 1) 
-(setq display-time-24hr-format t) 
-(setq display-time-day-and-date t) 
-
-;;关闭自动备份功能
-(setq make-backup-files nil)
-
-;;关闭自动保存模式
-(setq auto-save-mode nil)
-(setq auto-save-default nil)
-
-;;tab setting
-(setq tab-width 4)
-(setq default-tab-width 4)
-(setq indent-tabs-mode t)
-(setq c-basic-offset 4)
 
 ;; C language setting
 (add-hook 'c-mode-hook
@@ -270,6 +243,24 @@
 (setq ecb-tip-of-the-day nil)
 (setq ecb-windows-width 0.15)
 
+;;;;;;;;;; misc
+(global-linum-mode 'linum-mode);;行号显示
+(setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
+(setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
+(fset 'yes-or-no-p 'y-or-n-p);; 以 y/n代表 yes/no
+;; 显示时间，格式如下
+(display-time-mode 1) 
+(setq display-time-24hr-format t) 
+(setq display-time-day-and-date t) 
+(setq make-backup-files nil);;关闭自动备份功能
+;; 关闭自动保存模式
+(setq auto-save-mode nil)
+(setq auto-save-default nil)
+;; tab setting
+(setq tab-width 4)
+(setq default-tab-width 4)
+(setq indent-tabs-mode t)
+(setq c-basic-offset 4)
 ;; 各窗口间切换
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
@@ -280,13 +271,12 @@
 (define-key global-map [(control f1)] 'ecb-hide-ecb-windows)
 (define-key global-map [(control f2)] 'ecb-show-ecb-windows)
 
-;;others
 ;;revert current buffer
 (global-set-key [(control c) r] 'revert-buffer)
 ;;semantic-mode start
 (semantic-mode)
 
-;;windows os spec
+;; windows os spec
 (if (eq system-type `windows-nt)
     (let ()
       (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
