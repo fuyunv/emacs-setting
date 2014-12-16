@@ -344,5 +344,12 @@
 	   (buffer-name)))
 	(message "tags generated!")))
 
+;; nav-49
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-nav-49")
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+;; Optional: set up a quick key to toggle nav
+;; (global-set-key [f8] 'nav-toggle)
+
 ;; 启动emacsclient服务，不会打开新的emacs
 (server-start)
