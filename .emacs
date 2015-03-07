@@ -174,19 +174,14 @@
 (global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
 
 ;;emacs23开始内置cedet
-;;配置cedet
+;;cedet
 (require 'cedet)
-;;(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
-(add-to-list 'load-path "~/.emacs.d/cedet-1.1/common")
-(add-to-list 'load-path "~/.emacs.d/cedet-1.1/contrib")
 
 ;;semantic
-;;(require 'semantic-ia nil 'noerror)
-;;(require 'semantic-tag-folding nil 'noerror)
+(require 'semantic-ia nil 'noerror)
+(require 'semantic-tag-folding nil 'noerror)
 (require 'semantic-c nil 'noerror)
 (global-ede-mode t)                      ; enable the project management system
-;;(global-srecode-minor-mode t)            ; Enable template insertion menu
-;;(global-semantic-tag-folding-mode t)
 
 (global-set-key (kbd "M-q") 'semantic-ia-complete-symbol-menu)
 (global-set-key [f10] 'semantic-ia-fast-jump);; 智能跳转 跳转到定义
@@ -203,21 +198,13 @@
                         (setq first (cdr (car (cdr alist)))))
                     (semantic-mrub-switch-tags first))))
 (define-key c-mode-map [M-S-f12] 'semantic-analyze-proto-impl-toggle)
-;(define-key semantic-tag-folding-mode-map (kbd "C-c , -") 'semantic-tag-folding-fold-block)
-;(define-key semantic-tag-folding-mode-map (kbd "C-c , +") 'semantic-tag-folding-show-block)
-;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-all)
-;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-all)
+
 (setq semanticdb-project-roots (list (expand-file-name "/")))
 (defconst cedet-user-include-dirs
   (list
    "/usr/include"
    "/usr/local/include"
    ""))
-;(let ((include-dirs cedet-user-include-dirs))
-;  (mapc (lambda (dir)
-;          (semantic-add-system-include dir 'c++-mode)
-;          (semantic-add-system-include dir 'c-mode))
-;        include-dirs))
 
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
