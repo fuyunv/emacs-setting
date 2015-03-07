@@ -10,8 +10,8 @@
 (require 'php-mode)
 
 ;;highlight
-(load-file "~/.emacs.d/highlight.el")
-(load-file "~/.emacs.d/idle-highlight-mode.el")
+(load-file "~/.emacs.d/site-lisp/highlight.el")
+(load-file "~/.emacs.d/site-lisp/idle-highlight-mode.el")
 (idle-highlight-mode)
 (defun my-coding-hook ()
   (make-local-variable 'column-number-mode)
