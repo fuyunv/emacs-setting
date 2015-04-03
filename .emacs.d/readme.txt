@@ -631,3 +631,7 @@ C-x }
 C-x -
 C-x +
 
+-- cscope
+## gen index for cscope
+find -type f | grep -E '\.[chS]$' > cscope.files'
+cscope -b -k
