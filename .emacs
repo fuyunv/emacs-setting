@@ -108,22 +108,16 @@
 (add-hook 'emacs-lisp-mode-hook 'my-common-mode-auto-pair) 
 (add-hook 'text-mode-hook 'my-common-mode-auto-pair) 
 
-;; C language setting
-(add-hook 'c-mode-hook
-          '(lambda ()
-             (c-set-style "K&R")
-             (setq tab-width 4)
-             (setq indent-tabs-mode t)
-             (setq c-basic-offset 4)))
+(defun my-lang-style-setting()
+  (interactive)
+  (c-set-style "K&R")
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq c-basic-offset 4))
 
-;; C++ language setting
-(add-hook 'c++-mode-hook
-          '(lambda ()
-             (c-set-style "K&R")
-             ;;(c-toggle-auto-state)
-             (setq tab-width 4)
-             (setq indent-tabs-mode t)
-             (setq c-basic-offset 4)))
+;; C language setting
+(add-hook 'c-mode-hook 'my-lang-style-setting)
+(add-hook 'c++-mode-hook 'my-lang-style-setting)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
