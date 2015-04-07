@@ -2,11 +2,11 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
 ;;go mode
-(add-to-list 'load-path "~/.emacs.d/go-mode")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/go-mode")
 (require 'go-mode-load)
 
 ;;php mode
-(add-to-list 'load-path "~/.emacs.d/php-mode")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/php-mode")
 (require 'php-mode)
 
 ;;highlight
@@ -36,10 +36,10 @@
 (yas/minor-mode-on) ; 以minor mode打开，这样才能配合主mode使用
 
 ;;auto-complete
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete")
 (require 'auto-complete-config)
 (ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-liap/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
 (setq ac-use-quick-help nil)
 (setq ac-auto-start 1) ;; 输入1个字符开始补全
 (setq ac-auto-show-menu 0.1);; Show menu 0.1 second later
@@ -203,7 +203,7 @@
    ""))
 
 ;;ecb
-(add-to-list 'load-path  "~/.emacs.d/ecb-2.40")
+(add-to-list 'load-path  "~/.emacs.d/site-lisp/ecb-2.40")
 
 ;;(load-file "~/.emacs.d/ecb-2.40/ecb.el")
 ;;切换到目录窗口 Ctrl-c . g d 
