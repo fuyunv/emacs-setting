@@ -128,7 +128,7 @@
  '(delete-selection-mode nil)
  '(display-time-mode t)
  '(ecb-layout-window-sizes nil)
- '(ecb-options-version "2.32")
+ '(ecb-options-version "2.40")
  '(mark-even-if-inactive t)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t);; 显示括号匹配
@@ -203,9 +203,9 @@
    ""))
 
 ;;ecb
-(add-to-list 'load-path  "~/.emacs.d/ecb-2.32")
+(add-to-list 'load-path  "~/.emacs.d/ecb-2.40")
 
-;;(load-file "~/.emacs.d/ecb-2.32/ecb.el")
+;;(load-file "~/.emacs.d/ecb-2.40/ecb.el")
 ;;切换到目录窗口 Ctrl-c . g d 
 ;;切换到函数/方法窗口 Ctrl-c . g m 
 ;;切换到文件窗口 Ctrl-c . g s 
