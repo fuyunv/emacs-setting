@@ -1,0 +1,82 @@
+;; misc
+(global-linum-mode 'linum-mode);;行号显示
+(setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
+(setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
+(fset 'yes-or-no-p 'y-or-n-p);; 以 y/n代表 yes/no
+;; 显示时间，格式如下
+(display-time-mode 1) 
+(setq display-time-24hr-format t) 
+(setq display-time-day-and-date t) 
+(setq make-backup-files nil);;关闭自动备份功能
+;; 关闭自动保存模式
+(setq auto-save-mode nil)
+(setq auto-save-default nil)
+;; tab setting
+(setq tab-width 4)
+(setq default-tab-width 4)
+(setq indent-tabs-mode t)
+(setq c-basic-offset 4)
+;; 各窗口间切换
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
+
+
+;; windows os spec
+(if (eq system-type `windows-nt)
+    (let ()
+      (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
+      (custom-set-variables
+       '(custom-enabled-themes (quote (dichromacy)))
+       '(ecb-source-path (quote (("c:" "c:"))))
+       '(ecb-wget-setup (quote cons))
+       '(inhibit-startup-screen t)
+       '(tool-bar-mode nil))))
+
+;;only for linux
+(if (eq system-type `gnu/linux)
+	`(lambda()
+	   (setq load-path
+			 (cons (expand-file-name "~/.emacs.d/site-lisp/llvm") load-path))
+	   (require 'llvm-mode)
+	   (setq load-path
+			 (cons (expand-file-name "~/.emacs.d/site-lisp/llvm") load-path))
+	   (require 'tablegen-mode)))
+
+;; UTF-8
+(if 0
+    (lambda()
+      (setq current-language-environment "UTF-8")
+      (setq default-input-method "chinese-py")
+      (setq locale-coding-system 'utf-8)
+      (set-terminal-coding-system 'utf-8)
+      (set-keyboard-coding-system 'utf-8)
+      (set-selection-coding-system 'utf-8)
+      (prefer-coding-system 'utf-8)
+      ;; get around the Ctrl+SPACE key binding for inputing method
+      (global-set-key "\C-cm" 'set-mark-command)
+      ;; highlight marked region
+      (transient-mark-mode t)
+      ;; enable syntax highlight
+      (global-font-lock-mode t)
+      ;; show column number on status bar
+      (setq column-number-mode t)))
+
+;;etags generate-tag-table
+(defun generate-tag-table()
+  "Generate tag tables under current directory(Linux)."
+  (interactive)
+  (let   
+      ((exp "")
+       (dir ""))
+    (setq dir (read-from-minibuffer "generate tags in:" default-directory)
+          exp (read-from-minibuffer "suffix:" "*.[ch]"))
+	(setq command_local (concat "rm -f TAGS && find " dir " -name " "\"" exp "\"" " | xargs -n 1 etags -a"))
+	(message command_local)
+	(message "tags generating...")
+	(with-temp-buffer
+	  (shell-command
+	   command_local
+	   (buffer-name)))
+	(message "tags generated!")))
