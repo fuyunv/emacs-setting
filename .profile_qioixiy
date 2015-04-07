@@ -9,3 +9,13 @@ function ggrep()
         echo "not a git dir."
     fi
 }
+
+function dgrep()
+{
+	find . -name "$@"
+}
+
+function dfind()
+{
+	grep "$@" -nr .
+}
