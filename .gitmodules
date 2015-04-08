@@ -1,3 +1,6 @@
 [submodule ".emacs.d/site-lisp/yasnippet"]
 	path = .emacs.d/site-lisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet
+[submodule ".emacs.d/site-lisp/dictionary"]
+	path = .emacs.d/site-lisp/dictionary
+	url = https://github.com/myrkr/dictionary-el.git
