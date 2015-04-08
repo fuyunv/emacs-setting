@@ -243,3 +243,6 @@
 		try-expand-line
 		try-complete-lisp-symbol-partially
 		try-complete-lisp-symbol))
+
+;; dictionary
+(load-file "~/.emacs.d/.emacs-dictionary")
