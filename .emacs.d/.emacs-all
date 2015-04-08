@@ -224,6 +224,3 @@
 ;; (global-set-key [f8] 'nav-toggle)
 
 (load-file "~/.emacs.d/.emacs-misc")
-
-;; 启动emacsclient服务，不会打开新的emacs
-(server-start)
