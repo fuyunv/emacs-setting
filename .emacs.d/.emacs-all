@@ -205,7 +205,7 @@
 ;;auto start ecb
 ;;(setq ecb-auto-activate t)
 (setq ecb-tip-of-the-day nil)
-(setq ecb-windows-width 0.15)
+(setq ecb-windows-width 0.25)
 
 ;; 隐藏和显示ecb窗口
 (define-key global-map [(control f1)] 'ecb-hide-ecb-windows)
@@ -224,3 +224,7 @@
 ;; (global-set-key [f8] 'nav-toggle)
 
 (load-file "~/.emacs.d/.emacs-misc")
+
+;; session
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
