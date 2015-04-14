@@ -19,3 +19,8 @@ function dfind()
 {
 	grep "$@" -nr .
 }
+
+function chgrep()
+{
+	find . -name "*.[ch]" | xargs -n 1 grep --color=auto "$@"
+}
