@@ -22,5 +22,5 @@ function dfind()
 
 function chgrep()
 {
-	find . -name "*.[ch]" | xargs -n 1 grep --color=auto "$@"
+	find . -name "*.[ch]" | xargs -n 1 grep --color=auto -Hnr "$@"
 }
