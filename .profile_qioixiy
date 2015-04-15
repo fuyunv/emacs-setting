@@ -12,12 +12,12 @@ function ggrep()
 
 function dgrep()
 {
-	find . -name "$@"
+	grep "$@" -nr .
 }
 
 function dfind()
 {
-	grep "$@" -nr .
+	find . -name "$@"
 }
 
 function chgrep()
