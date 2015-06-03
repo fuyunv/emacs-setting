@@ -147,8 +147,11 @@
 (global-set-key (kbd "<f6>") 'find-tag)
 (global-set-key (kbd "<f7>") 'pop-tag-mark)
 
-(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏代码块
-(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
+;;(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏代码块
+;;(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
+(define-key global-map [(meta f11)] 'hs-hide-block) ;;gui f11 global map
+(define-key global-map [(meta f12)] 'hs-show-block)
+
 
 ;;emacs23开始内置cedet
 ;;cedet
