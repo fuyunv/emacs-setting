@@ -1,4 +1,5 @@
 ;; misc
+(setq-default indent-tabs-mode nil);;tabs indent disable
 (global-linum-mode 'linum-mode);;行号显示
 (setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
 (setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
