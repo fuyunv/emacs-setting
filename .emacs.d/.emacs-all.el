@@ -1,7 +1,7 @@
 ;;To add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
-(load-file "~/.emacs.d/.emacs-cscope")
+(load-file "~/.emacs.d/.emacs-cscope.el")
 
 ;;go mode
 (add-to-list 'load-path "~/.emacs.d/site-lisp/go-mode")
@@ -226,7 +226,7 @@
 ;; Optional: set up a quick key to toggle nav
 ;; (global-set-key [f8] 'nav-toggle)
 
-(load-file "~/.emacs.d/.emacs-misc")
+(load-file "~/.emacs.d/.emacs-misc.el")
 
 ;; session
 (require 'session)
@@ -248,4 +248,4 @@
 		try-complete-lisp-symbol))
 
 ;; dictionary
-(load-file "~/.emacs.d/.emacs-dictionary")
+(load-file "~/.emacs.d/.emacs-dictionary.el")
