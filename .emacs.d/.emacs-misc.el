@@ -28,7 +28,6 @@
 (if (eq system-type `windows-nt)
     (let ()
       (run-with-idle-timer 0.1 nil 'w32-send-sys-command 61488)
-	  (server-start);; 启动emacsclient服务，不会打开新的emacs
 	  (custom-set-variables
        '(custom-enabled-themes (quote (dichromacy)))
        '(ecb-source-path (quote (("c:" "c:"))))

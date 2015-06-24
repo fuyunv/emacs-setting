@@ -249,3 +249,5 @@
 
 ;; dictionary
 (load-file "~/.emacs.d/.emacs-dictionary.el")
+
+(server-start)                ; 启动emacsclient服务，不会打开新的emacs
