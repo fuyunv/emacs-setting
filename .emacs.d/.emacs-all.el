@@ -43,8 +43,8 @@
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
 (setq ac-use-quick-help nil)
-(setq ac-auto-start 1) ;; 输入1个字符开始补全
-(setq ac-auto-show-menu 0.1);; Show menu 0.1 second later
+(setq ac-auto-start 3) ;; 输入3个字符开始补全
+(setq ac-auto-show-menu 0.5);; Show menu 0.5 second later
 (setq ac-menu-height 12);; menu设置为12 lines
 (setq ac-use-menu-map t);; 选择菜单项的快捷键
 (define-key ac-menu-map "\C-n" 'ac-next)
@@ -132,13 +132,6 @@
 (add-hook 'perl-mode-hook 'hs-minor-mode)
 (add-hook 'php-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-;;能把一个代码块缩起来，需要的时候再展开
-;; M-x hs-minor-mode
-;; C-c @ ESC C-s show all
-;; C-c @ ESC C-h hide all
-;; C-c @ C-s show block
-;; C-c @ C-h hide block
-;; C-c @ C-c toggle hide/show
 
 ;;hot key
 (global-set-key (kbd "<f1>") 'eshell) ; shell->本地shell, eshell->emacs shell
@@ -151,7 +144,6 @@
 ;;(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
 (define-key global-map [(meta f11)] 'hs-hide-block) ;;gui f11 global map
 (define-key global-map [(meta f12)] 'hs-show-block)
-
 
 ;;emacs23开始内置cedet
 ;;cedet

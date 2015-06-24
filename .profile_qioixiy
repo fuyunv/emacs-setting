@@ -24,3 +24,5 @@ function chgrep()
 {
 	find . -name "*.[ch]" | xargs -n 1 grep --color=auto -Hnr "$@"
 }
+
+alias ec='emacsclient -c $@'

@@ -23,7 +23,6 @@
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
-
 ;; windows os spec
 (if (eq system-type `windows-nt)
     (let ()
