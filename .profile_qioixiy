@@ -25,4 +25,17 @@ function chgrep()
 	find . -name "*.[ch]" | xargs -n 1 grep --color=auto -Hnr "$@"
 }
 
+
+function findSymbolFromSo() {
+    for lib in `ls *`
+    do
+        cmd="nm ${lib} 2>/dev/null | grep $@"
+        res=`eval ${cmd}`
+        if [ "" != "$res" ]; then
+            echo "$lib"
+            echo "$res"
+        fi
+    done
+}
+
 alias ec='emacsclient -c $@'
