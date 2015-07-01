@@ -39,3 +39,4 @@ function findSymbolFromSo() {
 }
 
 alias ec='emacsclient -c $@'
+alias ecnw='emacsclient  -nw -c $@'
