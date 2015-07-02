@@ -1,6 +1,10 @@
 ;;To add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
+;; subdir
+(load-file "~/.emacs.d/.emacs-dictionary.el")
+(load-file "~/.emacs.d/.emacs-misc.el")
+(load-file "~/.emacs.d/.emacs-cedet.el")
 (load-file "~/.emacs.d/.emacs-cscope.el")
 
 ;;go mode
@@ -180,13 +184,13 @@
 
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/site-lisp/ecb-2.40")
-
-;;(load-file "~/.emacs.d/ecb-2.40/ecb.el")
 ;;切换到目录窗口 Ctrl-c . g d 
 ;;切换到函数/方法窗口 Ctrl-c . g m 
 ;;切换到文件窗口 Ctrl-c . g s 
 ;;切换到历史窗口 Ctrl-c . g h 
 ;;切换到上一个编辑窗口 Ctrl-c . g l
+
+;; ecb depend cedet plugin
 (require 'semantic/analyze)
 (provide 'semantic-analyze)
 (provide 'semantic-ctxt)
@@ -202,7 +206,6 @@
 (setq ecb-tip-of-the-day nil)
 (setq ecb-windows-width 0.25)
 
-;; 隐藏和显示ecb窗口
 (define-key global-map [(control f1)] 'ecb-hide-ecb-windows)
 (define-key global-map [(control f2)] 'ecb-show-ecb-windows)
 
@@ -217,8 +220,6 @@
 (nav-disable-overeager-window-splitting)
 ;; Optional: set up a quick key to toggle nav
 ;; (global-set-key [f8] 'nav-toggle)
-
-(load-file "~/.emacs.d/.emacs-misc.el")
 
 ;; session
 (require 'session)
@@ -239,7 +240,7 @@
 		try-complete-lisp-symbol-partially
 		try-complete-lisp-symbol))
 
-;; dictionary
-(load-file "~/.emacs.d/.emacs-dictionary.el")
-
-(server-start)                ; 启动emacsclient服务，不会打开新的emacs
+;; server start
+(require 'server)
+(if (not (server-running-p))
+    (server-start))

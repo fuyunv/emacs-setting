@@ -27,6 +27,8 @@ M-< ;缓冲区头部
 M-> ;缓冲区尾部
 C-M-f ;向前匹配括号
 C-M-b ;向后匹配括号
+C-M-v ;scroll up other window
+C-M-V ;scroll down other window
 M-n or C-u n ;重复操作随后的命令n次
 C-u ;重复操作随后的命令4次
 C-u C-u ;重复操作随后的命令8次
