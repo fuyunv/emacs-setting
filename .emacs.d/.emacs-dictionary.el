@@ -14,9 +14,9 @@
 ;; "web1913" for Webster's Revised Unabridged Dictionary(1913) so on
 
 ;; Tool-tip support for GNU Emacs 21
-;;(setq dictionary-tooltip-dictionary "wn")
-(setq dictionary-tooltip-dictionary "eng-deu")
-      (global-dictionary-tooltip-mode 1)
+(setq dictionary-tooltip-dictionary "localhost")
+;;(setq dictionary-tooltip-dictionary "eng-deu")
+(global-dictionary-tooltip-mode 1)
 
 ;; key bindings
 (global-set-key "\C-cs" 'dictionary-search)
