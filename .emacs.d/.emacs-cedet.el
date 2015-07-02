@@ -17,7 +17,7 @@
            global-semanticdb-minor-mode
            global-semantic-idle-summary-mode
            global-semantic-mru-bookmark-mode)))
- '(semantic-idle-scheduler-idle-time 0))
+ '(semantic-idle-scheduler-idle-time 2))
 (semantic-mode)
 
 ;;;; smart complitions
