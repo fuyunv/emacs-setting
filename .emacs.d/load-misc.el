@@ -1,22 +1,26 @@
 ;; misc
-(setq-default indent-tabs-mode nil);;tabs indent disable
-(global-linum-mode 'linum-mode);;行号显示
-(setq x-select-enable-clipboard t);; 支持emacs和外部程序的粘贴
+(setq-default indent-tabs-mode nil)
+(setq x-select-enable-clipboard t)
+(global-linum-mode 'linum-mode)
+(setq make-backup-files nil);; 关闭自动备份功能
 (setq frame-title-format '("-@-" buffer-file-name " " ));; 在标题栏显示buffer名称
-(fset 'yes-or-no-p 'y-or-n-p);; 以 y/n代表 yes/no
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; 显示时间，格式如下
 (display-time-mode 1) 
 (setq display-time-24hr-format t) 
 (setq display-time-day-and-date t) 
-(setq make-backup-files nil);;关闭自动备份功能
+
 ;; 关闭自动保存模式
 (setq auto-save-mode nil)
 (setq auto-save-default nil)
+
 ;; tab setting
 (setq tab-width 4)
 (setq default-tab-width 4)
 (setq indent-tabs-mode t)
 (setq c-basic-offset 4)
+
 ;; 各窗口间切换
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
@@ -132,3 +136,11 @@ occurence of CHAR."
 (require 'hide-lines)
 (global-set-key (kbd "C-c l") 'hide-lines)
 (global-set-key (kbd "C-c L") 'show-all-invisible)
+
+(global-set-key (kbd "<f6>") 'find-tag)
+(global-set-key (kbd "<f7>") 'pop-tag-mark)
+
+;;(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏代码块
+;;(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
+(define-key global-map [(meta f11)] 'hs-hide-block) ;;gui f11 global map
+(define-key global-map [(meta f12)] 'hs-show-block)

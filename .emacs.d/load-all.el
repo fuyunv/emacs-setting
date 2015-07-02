@@ -1,11 +1,11 @@
-;;To add a single directory to the front of your ‘load-path’
+;; add a single directory to the front of your ‘load-path’
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
-;; subdir
+;; load file
 (load-file "~/.emacs.d/load-dictionary.el")
-(load-file "~/.emacs.d/load-misc.el")
 (load-file "~/.emacs.d/load-cedet.el")
 (load-file "~/.emacs.d/load-cscope.el")
+(load-file "~/.emacs.d/load-misc.el") ; when ac running at start of this line have bug
 
 ;;go mode
 (add-to-list 'load-path "~/.emacs.d/site-lisp/go-mode")
@@ -19,6 +19,7 @@
 (load-file "~/.emacs.d/site-lisp/highlight.el")
 (load-file "~/.emacs.d/site-lisp/idle-highlight-mode.el")
 (idle-highlight-mode)
+
 (defun my-coding-hook ()
   (make-local-variable 'column-number-mode)
   (column-number-mode t)
@@ -45,11 +46,28 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/auto-complete")
 (require 'auto-complete-config)
 (ac-config-default)
+
+(setq-default ac-sources '(ac-source-yasnippet
+                           ac-source-semantic
+                           ac-source-ropemacs
+                           ac-source-imenu
+                           ac-source-words-in-buffer
+                           ac-source-dictionary
+                           ac-source-abbrev
+                           ac-source-words-in-buffer
+                           ac-source-files-in-current-dir
+                           ac-source-filename))
+
+(set-face-background 'ac-candidate-face "lightgray")
+(set-face-underline 'ac-candidate-face "darkgray")
+(set-face-background 'ac-selection-face "steelblue")
+
+(ac-set-trigger-key "TAB")
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
 (setq ac-use-quick-help nil)
 (setq ac-auto-start 3) ;; 输入3个字符开始补全
 (setq ac-auto-show-menu 0.5);; Show menu 0.5 second later
-(setq ac-menu-height 12);; menu设置为12 lines
+(setq ac-menu-height 20);; menu设置为20 lines
 (setq ac-use-menu-map t);; 选择菜单项的快捷键
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
@@ -64,7 +82,7 @@
 (global-set-key [(control c)(k)] 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-;;输入左边的括号，就会自动补全右边的部分.包括(), "", [] , {} , ...
+;; auto pair
 (defun my-common-mode-auto-pair () 
   (interactive) 
   (make-local-variable 'skeleton-pair-alist) 
@@ -136,51 +154,6 @@
 (add-hook 'perl-mode-hook 'hs-minor-mode)
 (add-hook 'php-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-
-;;hot key
-(global-set-key (kbd "<f1>") 'eshell) ; shell->本地shell, eshell->emacs shell
-(global-set-key (kbd "<f2>") 'ecb-minor-mode)
-(global-set-key (kbd "<f5>") 'semantic-ia-fast-jump) ; 智能跳转 跳转到定义
-(global-set-key (kbd "<f6>") 'find-tag)
-(global-set-key (kbd "<f7>") 'pop-tag-mark)
-
-;;(global-set-key (kbd "<f11>") 'hs-hide-block) ; 隐藏代码块
-;;(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
-(define-key global-map [(meta f11)] 'hs-hide-block) ;;gui f11 global map
-(define-key global-map [(meta f12)] 'hs-show-block)
-
-;;emacs23开始内置cedet
-;;cedet
-(require 'cedet)
-
-;;semantic
-(require 'semantic-ia nil 'noerror)
-(require 'semantic-tag-folding nil 'noerror)
-(require 'semantic-c nil 'noerror)
-(global-ede-mode t)                      ; enable the project management system
-
-(global-set-key (kbd "M-q") 'semantic-ia-complete-symbol-menu)
-(global-set-key [f10] 'semantic-ia-fast-jump);; 智能跳转 跳转到定义
-(global-set-key [S-f10] ;; 跳转到上一次的地方
-				(lambda ()
-				  (interactive)
-                  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
-                      (error "Semantic Bookmark ring is currently empty"))
-                  (let* ((ring (oref semantic-mru-bookmark-ring ring))
-                         (alist (semantic-mrub-ring-to-assoc-list ring))
-                         (first (cdr (car alist))))
-                    (if (semantic-equivalent-tag-p (oref first tag)
-                                                   (semantic-current-tag))
-                        (setq first (cdr (car (cdr alist)))))
-                    (semantic-mrub-switch-tags first))))
-(define-key c-mode-map [M-S-f12] 'semantic-analyze-proto-impl-toggle)
-
-(setq semanticdb-project-roots (list (expand-file-name "/")))
-(defconst cedet-user-include-dirs
-  (list
-   "/usr/include"
-   "/usr/local/include"
-   ""))
 
 ;;ecb
 (add-to-list 'load-path  "~/.emacs.d/site-lisp/ecb-2.40")
