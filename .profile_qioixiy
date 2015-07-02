@@ -38,5 +38,7 @@ function findSymbolFromSo() {
     done
 }
 
+alias e='emacs -nw $@'
+alias egui='emacs $@'
 alias ec='emacsclient -nw -c $@'
 alias ecgui='emacsclient -c $@'
