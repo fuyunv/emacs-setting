@@ -1,1 +1,1 @@
-(load-file "~/.emacs.d/.emacs-all.el")
+(load-file "~/.emacs.d/load-all.el")

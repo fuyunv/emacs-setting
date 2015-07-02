@@ -2,10 +2,10 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
 ;; subdir
-(load-file "~/.emacs.d/.emacs-dictionary.el")
-(load-file "~/.emacs.d/.emacs-misc.el")
-(load-file "~/.emacs.d/.emacs-cedet.el")
-(load-file "~/.emacs.d/.emacs-cscope.el")
+(load-file "~/.emacs.d/load-dictionary.el")
+(load-file "~/.emacs.d/load-misc.el")
+(load-file "~/.emacs.d/load-cedet.el")
+(load-file "~/.emacs.d/load-cscope.el")
 
 ;;go mode
 (add-to-list 'load-path "~/.emacs.d/site-lisp/go-mode")
