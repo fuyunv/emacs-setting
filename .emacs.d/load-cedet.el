@@ -3,7 +3,6 @@
 
 ;;semantic
 (require 'semantic-ia nil 'noerror)
-(require 'semantic-tag-folding nil 'noerror)
 (require 'semantic-c nil 'noerror)
 
 ;; url: http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html
@@ -17,9 +16,12 @@
            global-semantic-idle-summary-mode
            global-semantic-mru-bookmark-mode
            global-semantic-highlight-func-mode
+           global-semantic-highlight-edits-mode
+           global-semantic-show-unmatched-syntax-mode
+           global-semantic-show-parser-state-mode
            global-semantic-stickyfunc-mode
            global-semantic-idle-local-symbol-highlight-mode)))
- '(semantic-idle-scheduler-idle-time 1.5))
+ '(semantic-idle-scheduler-idle-time 1))
 (semantic-mode 1)
 
 ;;;; smart complitions
@@ -34,22 +36,18 @@
 (require 'semantic/bovine/c)
 
 (defconst cedet-user-include-dirs
-  (list
-   "." ".."
-   "./include" "./inc" "../include" "../inc"))
+  (list "." ".." "./inc" "../inc" "./include" "../include"))
 (setq cedet-sys-include-dirs
-      (list
-       "/usr/include"
-       "/usr/local/include"))
-
+      (list "/usr/include"
+			"/usr/local/include"))
+(setq semantic-c-dependency-system-include-path "/usr/include/")
+;; save to var semantic-dependency-system-include-path
 (let (include-dirs cedet-user-include-dirs)
   (setq include-dirs (append include-dirs cedet-sys-include-dirs))
   (mapc (lambda (dir)
           (semantic-add-system-include dir 'c++-mode)
           (semantic-add-system-include dir 'c-mode))
         include-dirs))
-
-(setq semantic-c-dependency-system-include-path "/usr/include/")
 
 ;;;; TAGS Menu
 (defun my-semantic-hook ()
@@ -59,6 +57,8 @@
 ;;;; Semantic DataBase存储位置
 (setq semanticdb-default-save-directory
       (expand-file-name "~/.emacs.d/semanticdb"))
+
+(setq semanticdb-project-roots (list (expand-file-name "/")))
 
 ;; if you want to enable support for gnu global
 ;; (when (cedet-gnu-global-version-check t)
@@ -143,7 +143,7 @@
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 (add-hook 'c++-mode-common-hook 'my-cedet-hook)
 
-;; 代码中的跳转
+;; jump and return
 (defadvice push-mark (around semantic-mru-bookmark activate)
   "Push a mark at LOCATION with NOMSG and ACTIVATE passed to `push-mark'.
 If `semantic-mru-bookmark-mode' is active, also push a tag onto
@@ -151,24 +151,31 @@ the mru bookmark stack."
   (semantic-mrub-push semantic-mru-bookmark-ring (point) 'mark)
   ad-do-it)
 
-;; 查找函数调用 Srecode的使用
-;;;; Custom template for srecode
+(global-set-key [f12] 'semantic-ia-fast-jump)
+(global-set-key [S-f12] ; return prev tag
+				(lambda ()
+				  (interactive)
+				  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+					  (error "Semantic Bookmark ring is currently empty"))
+				  (let* ((ring (oref semantic-mru-bookmark-ring ring))
+						 (alist (semantic-mrub-ring-to-assoc-list ring))
+						 (first (cdr (car alist))))
+					(if (semantic-equivalent-tag-p (oref first tag)
+												   (semantic-current-tag))
+						(setq first (cdr (car (cdr alist)))))
+					(semantic-mrub-switch-tags first))))
+(define-key c-mode-base-map [M-S-f12] 'semantic-analyze-proto-impl-toggle)
+
+;; cedet 代码折叠
+(when (and window-system (require 'semantic-tag-folding nil 'noerror))
+  (global-semantic-tag-folding-mode 1)
+  (define-key semantic-tag-folding-mode-map (kbd "C-c , -") 'semantic-tag-folding-fold-block)
+  (define-key semantic-tag-folding-mode-map (kbd "C-c , +") 'semantic-tag-folding-show-block)
+  (define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-all)
+  (define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-all)
+  (global-set-key (kbd "C-?") 'global-semantic-tag-folding-mode))
+
+;; Custom template for srecode
 ;;(setq srecode-map-load-path
 ;;  (list (srecode-map-base-template-dir)
 ;;    (expand-file-name "~/.emacs.d/templates/srecode")))
-
-(global-set-key
- [S-f10] ;; 跳转到上一次的地方
- (lambda ()
-   (interactive)
-   (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
-       (error "Semantic Bookmark ring is currently empty"))
-   (let* ((ring (oref semantic-mru-bookmark-ring ring))
-          (alist (semantic-mrub-ring-to-assoc-list ring))
-          (first (cdr (car alist))))
-     (if (semantic-equivalent-tag-p (oref first tag)
-                                    (semantic-current-tag))
-         (setq first (cdr (car (cdr alist)))))
-     (semantic-mrub-switch-tags first))))
-
-(setq semanticdb-project-roots (list (expand-file-name "/")))
