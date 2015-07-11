@@ -79,7 +79,7 @@
 (ede-cpp-root-project "test"
                       :name "test Project"
                       ;; Any file at root directory of the project
-                      :file "~/.emacs" ; "~/work/Proj1/Makefile"
+                      :file "~/.emacs.d/init.el" ; "~/work/Proj1/Makefile"
                       ;; Relative to the project's root directory
                       :include-path '("/" "/include")
                       :system-include-path '("/usr/include")
