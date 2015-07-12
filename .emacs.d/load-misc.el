@@ -144,3 +144,9 @@ occurence of CHAR."
 ;;(global-set-key (kbd "<f12>") 'hs-show-block) ; 显示代码块
 (define-key global-map [(meta f11)] 'hs-hide-block) ;;gui f11 global map
 (define-key global-map [(meta f12)] 'hs-show-block)
+
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
