@@ -4,3 +4,6 @@
 [submodule ".emacs.d/site-lisp/dictionary"]
 	path = .emacs.d/site-lisp/dictionary
 	url = https://github.com/myrkr/dictionary-el.git
+[submodule ".emacs.d/site-lisp/emms"]
+	path = .emacs.d/site-lisp/emms
+	url = git://git.sv.gnu.org/emms.git
