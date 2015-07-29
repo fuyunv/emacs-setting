@@ -15,7 +15,7 @@
            global-semantic-idle-scheduler-mode
            global-semantic-idle-summary-mode
            global-semantic-mru-bookmark-mode
-           global-semantic-highlight-func-mode
+           ;; global-semantic-highlight-func-mode
            ;; global-semantic-highlight-edits-mode
            ;; global-semantic-show-unmatched-syntax-mode
            global-semantic-show-parser-state-mode
