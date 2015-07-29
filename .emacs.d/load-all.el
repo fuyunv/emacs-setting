@@ -57,6 +57,13 @@
                            ac-source-words-in-buffer
                            ac-source-files-in-current-dir
                            ac-source-filename))
+;;;; c-mode
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "RET") 'newline-and-indent)
+             (semantic-mode t)))
+(setq ac-comphist-file
+      (expand-file-name "~/.emacs.d/ac-comphist.dat"))
 
 (set-face-background 'ac-candidate-face "lightgray")
 (set-face-underline 'ac-candidate-face "darkgray")
